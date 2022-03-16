@@ -186,9 +186,13 @@ const Compile = {
       paths,
       options
     });
-    return Compilations.promoteCompileResult({
-      compilations: compilationResult.compilations
-    });
+    return compilationResult.compilations.every(
+      compilation => compilation.contracts.length === 0
+    )
+      ? Compilations.emptyWorkflowCompileResult()
+      : Compilations.promoteCompileResult({
+          compilations: compilationResult.compilations
+        });
   }
 };
 
