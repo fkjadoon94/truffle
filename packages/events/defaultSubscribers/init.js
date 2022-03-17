@@ -2,7 +2,13 @@ const OS = require("os");
 
 module.exports = {
   initialization: function () {
-    this.logger = console;
+    this.logger = {
+      log: (...args) => {
+        if (!this.quiet) {
+          console.log(...args);
+        }
+      }
+    };
   },
   handlers: {
     "init:start": [

@@ -11,12 +11,18 @@ class Subscriber {
     this.unsubscribeListeners = {};
     this.quiet = config.quiet;
     this.config = config;
-    if (config.logger) this.logger = config.logger;
-    if (initialization) initialization.bind(this)(config);
+    if (config.logger) {
+      this.logger = config.logger;
+    }
+    if (initialization) {
+      initialization.bind(this)(config);
+    }
 
     const { globbedHandlers, nonGlobbedHandlers } = sortHandlers(handlers);
 
-    if (nonGlobbedHandlers) this.setUpListeners(nonGlobbedHandlers);
+    if (nonGlobbedHandlers) {
+      this.setUpListeners(nonGlobbedHandlers);
+    }
 
     if (globbedHandlers) {
       this.globbedHandlers = globbedHandlers;
@@ -64,8 +70,12 @@ class Subscriber {
 
   updateOptions(config) {
     this.config = config;
-    if (config.quiet) this.quiet = true;
-    if (config.logger) this.logger = config.logger;
+    if (config.quiet) {
+      this.quiet = true;
+    }
+    if (config.logger) {
+      this.logger = config.logger;
+    }
   }
 }
 
